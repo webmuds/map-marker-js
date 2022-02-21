@@ -1,0 +1,48 @@
+{
+  "name": "@webmuds/map-marker",
+  "version": "0.0.0",
+  "description": "Marker tags for ASCII maps",
+  "type": "module",
+  "scripts": {
+    "test": "npm run lint && NODE_ENV=test c8 mocha",
+    "test:ci": "NODE_ENV=test mocha",
+    "lint": "standardx --fix --verbose",
+    "release": "release-it --config ./node_modules/@dimensionalpocket/release/config/default.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webmuds/map-marker-js.git"
+  },
+  "author": "dimensionalpocket.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/webmuds/map-marker-js/issues"
+  },
+  "homepage": "https://github.com/webmuds/map-marker-js#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "@dimensionalpocket/development": "github:dimensionalpocket/development-js#0.4.2",
+    "@dimensionalpocket/release": "github:dimensionalpocket/release-js#0.2.3"
+  },
+  "babel": {
+    "extends": "./node_modules/@dimensionalpocket/development/babel"
+  },
+  "eslintConfig": {
+    "extends": "./node_modules/@dimensionalpocket/development/eslint"
+  },
+  "mocha": {
+    "recursive": true,
+    "reporter": "dot",
+    "colors": true
+  },
+  "c8": {
+    "all": true,
+    "include": [
+      "index.js",
+      "src"
+    ]
+  },
+  "engines": {
+    "node": ">= 14.17.1"
+  }
+}
