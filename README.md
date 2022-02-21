@@ -65,13 +65,15 @@ Examples:
 
 `roomId` has two special values:
 
-* `null` - use this value to render only `falseString` values. This is the equivalent of rendering a map without markers.
+* `null` - use this value to render only `falseString` values.
+  * This is the equivalent of rendering a map without markers.
 ```js
 marker.roomId = null
 marker.render() // <== [ ]-[ ]-[ ]
 ```
 
-* `-1` - use this value to render `trueString` values at all potisions. This is the equivalent of rendering a map with all markers visible, useful during map building.
+* `-1` - use this value to render `trueString` values at all positions.
+  * This is the equivalent of rendering a map with all markers visible, useful during map building.
 ```js
 marker.roomId = -1
 marker.render() // <== [X]-[X]-[X]
