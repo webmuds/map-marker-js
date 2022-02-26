@@ -65,17 +65,17 @@ Examples:
 
 `markId` has two special values:
 
-* `null` - use this value to render only `falseString` values.
+* `false` - use this value to render only `falseString` values.
   * This is the equivalent of rendering a map without marks.
 ```js
-marker.markId = null
+marker.markId = false
 marker.render() // <== [ ]-[ ]-[ ]
 ```
 
-* `-1` - use this value to render `trueString` values at all positions.
+* `true` - use this value to render `trueString` values at all positions.
   * This is the equivalent of rendering a map with all marks visible, useful during map building.
 ```js
-marker.markId = -1
+marker.markId = true
 marker.render() // <== [X]-[X]-[X]
 ```
 
