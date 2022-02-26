@@ -2,7 +2,7 @@
 
 'use strict'
 
-// A pattern to match: <x:roomId?trueString|falseString>
+// A pattern to match: <x:markId?trueString|falseString>
 const TAG_OPENER = '<x:'
 const TAG_ENDER = '>'
 const TRUE_STRING_SEPARATOR = '?'
@@ -18,22 +18,24 @@ export class MapMarker {
    */
   constructor (originalMap) {
     /**
-     * The original map to perform marker substitutions on.
+     * The original map to perform mark substitutions on.
      *
      * @type {string}
      */
     this.original = originalMap
 
     /**
-     * The Room ID to match markers against. Can be null (no markers rendered).
-     * If -1, renders all markers. Useful to see all markers at once during map creation.
+     * The mark ID to match mark tags against.
+     * In MUD maps, this is usually a Room VNUM/Id.
+     * If false or null, all falseStrings (no marks) will be rendered.
+     * If true, all trueStrings will be rendered (useful for map building).
      *
-     * @type {?number|string}
+     * @type {?boolean|number|string}
      */
-    this.roomId = null
+    this.markId = null
 
     /**
-     * The replace function, bound to this instance so it has access to the matching room ID.
+     * The replace function, bound to this instance so it has access to the matching mark ID.
      *
      * @type {function}
      */
@@ -41,7 +43,7 @@ export class MapMarker {
   }
 
   /**
-   * Returns a rendered string of the map, with the markers properly replaced.
+   * Returns a rendered string of the map, with the marker tags properly replaced.
    *
    * @returns {string}
    */
@@ -53,26 +55,26 @@ export class MapMarker {
 
 /**
  * The replacer function. Will be bound to MapMarker instances
- * so they can access the roomId to match against.
+ * so they can access the markId to match against.
  *
  * @param {string} _match - Matched string. Unused but required by String#replace.
- * @param {string} roomId - The Room ID present in the tag.
- * @param {string} trueString - The string to render if the room in the tag matches the room ID in the parser.
- * @param {string} falseString - The string to render if the room in the tag does not match the room ID in the parser.
+ * @param {string} markId - The mark ID set in the tag.
+ * @param {string} trueString - The string to render if the mark ID in the tag matches the mark ID in the parser.
+ * @param {string} falseString - The string to render if the mark ID in the tag does not match the mark ID in the parser.
  *
  * @this {MapMarker}
  * @returns {string}
  */
-function replaceTags (_match, roomId, trueString = null, falseString = null) {
+function replaceTags (_match, markId, trueString = null, falseString = null) {
   var matched
-  var roomIdToMatch = this.roomId
+  var markIdToMatch = this.markId
 
-  if (roomIdToMatch === -1) {
-    matched = true // Show all markers
-  } else if (roomIdToMatch == null) {
-    matched = false // Show no markers
+  if (markIdToMatch === true) {
+    matched = true // Show all marks
+  } else if (markIdToMatch === false || markIdToMatch == null) {
+    matched = false // Show no marks
   } else {
-    matched = ('' + roomIdToMatch) === roomId
+    matched = ('' + markIdToMatch) === markId
   }
 
   if (matched) {
