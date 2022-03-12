@@ -4,4 +4,4 @@ on: push
 
 jobs:
   build:
-    uses: dimensionalpocket/development-js/.github/workflows/default-node-build.yml@0.5.2
+    uses: dimensionalpocket/development-js/.github/workflows/default-node-build.yml@0.5.3
