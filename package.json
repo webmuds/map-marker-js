@@ -20,7 +20,7 @@
   "homepage": "https://github.com/webmuds/map-marker-js#readme",
   "dependencies": {},
   "devDependencies": {
-    "@dimensionalpocket/development": "github:dimensionalpocket/development-js#0.7.0",
+    "@dimensionalpocket/development": "github:dimensionalpocket/development-js#1.3.0",
     "@dimensionalpocket/release": "github:dimensionalpocket/release-js#0.3.3"
   },
   "babel": {
